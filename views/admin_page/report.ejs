@@ -1,0 +1,199 @@
+
+
+
+
+
+
+<div class="container-fluid">
+
+    <div class="d-flex justify-content-center">
+        <div class="pt-2  w-50">
+            <div class="card card-body btn ">
+                <h3>ออกรายงาน</h3>
+            </div>
+        </div>
+    </div>
+  
+
+
+    <div class="card card-body">
+
+        <div class=" row  ">
+            
+            <div class="col-4 col-md-4"></div>
+
+
+                <form action="" method="get" style="display: contents;">
+                    <div class="col-6 col-md-3 col-lg-3">
+                        <label for="">ประเภทรายงาน</label>
+                        <select class="form-control" name="select" id="" onchange="non_date_input()">
+                            <option id="O1" value="1">ข้อมูลการขาย</option>
+                            <option id="O2" value="2">ข้อมูลสต๊อก</option>
+                        </select>
+                    </div>
+
+
+                    <div class="col-6 col-md-3 col-lg-3 align-self-end  ">
+                        <button type="submit" class="btn btn-info  " onclick="">ยืนยัน</button>
+                    </div>
+
+            
+
+                </form>
+        
+            
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+<% if( select == 1){%>
+    <div class="row">
+        <div class="col-12">
+            <div class="card card-body">
+                <table id="select1" class="table table-borderless border-top border-5 border-dark " >
+                    <thead class="">
+                        
+                        <tr>
+                            <th>รหัสการขาย</th>
+                            <th>ชื่อสินค้า</th>
+                            <th>จำนวน</th>
+                            <th>จำนวนเงิน</th>
+                            <th>วันเวลา</th>
+                        </tr>
+
+                    </thead>
+                    <tbody >
+                        <section>
+                            
+
+                            <% for(let i of db_sale){%>
+
+                                <tr>
+                                    <td><%= i.id%></td>
+                                    <td><%= i.name%></td>
+                                    <td><%= i.amount%></td>
+                                    <td><%= i.total_price%></td>
+                                    <td><%= i.date%></td>
+                                </tr>
+                            <%}%>
+                                            
+                        
+                        
+                        </section>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            $('#select1').DataTable({
+                "paging": false,
+                "searching": false,
+                "ordering": false,
+                "info": false,
+                "autoWidth": false,
+                "responsive": true,
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                    extend: 'print',
+                    messageTop:
+                    `
+                        <p style='text-align: right;'>ออกรายงานวันที่ <%=date%> เวลา <%=time%> </p>
+                        <div style="text-align: center;">
+                            <img src="images/shops.png" width="100px" height="100px"  >
+                        </div><br>
+                        <h2 style='text-align: center;'>ข้อมูลการขาย</h2>
+                    `,
+
+                    messageBottom: 
+                    `
+                    
+                    `
+                    }
+                ]
+            });
+        })
+    </script>
+
+<%}if( select == 2){%>
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-body">
+                    <table id="select1" class="table table-borderless border-top border-5 border-dark " >
+                        <thead class="">
+                            <tr>
+                                <th>รหัสสินค้า</th>
+                                <th>ชื่อสินค้า</th>
+                                <th>ราคา</th>
+                                <th>จำนวน</th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            <section>
+                                
+
+                                <% for(let i of db_item){%>
+
+                                    <tr>
+                                        <td><%= i.id%></td>
+                                        <td><%= i.name%></td>
+                                        <td><%= i.price%></td>
+                                        <td><%= i.amount%></td>
+                                        
+                                    </tr>
+                                <%}%>
+                                                
+                            
+                            
+                            </section>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(function () {
+                $('#select1').DataTable({
+                    "paging": false,
+                    "searching": false,
+                    "ordering": false,
+                    "info": false,
+                    "autoWidth": false,
+                    "responsive": true,
+                    dom: 'Bfrtip',
+                    buttons: [
+                        {
+                        extend: 'print',
+                        messageTop:
+                        `
+                            <p style='text-align: right;'>ออกรายงานวันที่ <%=date%> เวลา <%=time%> </p>
+                            <div style="text-align: center;">
+                                <img src="images/shops.png" width="100px" height="100px"  >
+                            </div><br>
+                            <h2 style='text-align: center;'>ข้อมูลสินค้า</h2>
+                        `,
+    
+                        messageBottom: 
+                        `
+                        
+                        `
+                        }
+                    ]
+                });
+            })
+        </script>
+    
+<%}%>
+
+<script>
+
+</script>
+
+
